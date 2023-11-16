@@ -26,7 +26,6 @@ const ImageDisplay = (props: userInfoProps) => {
     error,
     refetch,
   } = useGetRandomPhotosQuery();
-  console.log(error, isError, refetch);
   const triggerRefetchWithDelay = () => {
     setTimeout(() => {
       refetch(); // Call refetch after the delay
@@ -39,7 +38,7 @@ const ImageDisplay = (props: userInfoProps) => {
     refetch();
   }, [selectedUser]);
 
-  if (error) {
+  if (isError) {
     if ('data' in error) {
       const errMsg = error.data as string;
       return (
@@ -50,19 +49,27 @@ const ImageDisplay = (props: userInfoProps) => {
       );
     }
   } else {
-    <div className="flex flex-row  flex-wrap">
-      {!isFetching && photos
-        ? photos.map(photo => {
-            return <StyledImage className="mx-4" src={photo.urls.regular} />;
-          })
-        : new Array(10).fill(null).map((_, i) => {
-            return (
-              <div className="m-4" key={i}>
-                <Skeleton variant="rounded" width={300} height={300} />
-              </div>
-            );
-          })}
-    </div>;
+    return (
+      <div className="flex flex-row  flex-wrap">
+        {!isFetching && photos
+          ? photos.map(photo => {
+              return (
+                <StyledImage
+                  key={photo.id}
+                  className="mx-4"
+                  src={photo.urls.regular}
+                />
+              );
+            })
+          : new Array(10).fill(null).map((_, i) => {
+              return (
+                <div className="m-4" key={i}>
+                  <Skeleton variant="rounded" width={300} height={300} />
+                </div>
+              );
+            })}
+      </div>
+    );
   }
 };
 
