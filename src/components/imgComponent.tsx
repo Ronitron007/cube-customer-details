@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import { User } from '../features/usersSlice';
-import {
-  isFetchBaseQueryErrorType,
-  useGetRandomPhotosQuery,
-} from '../features/photosSlice';
+import { useGetRandomPhotosQuery } from '../features/photosSlice';
 import { useEffect } from 'react';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -68,3 +65,5 @@ const ImageDisplay = (props: userInfoProps) => {
     </div>;
   }
 };
+
+export default ImageDisplay;
