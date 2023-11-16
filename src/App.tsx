@@ -7,7 +7,7 @@ import _ from 'lodash';
 import { Skeleton } from '@mui/material';
 
 function App() {
-  const { data: UsersData, isLoading, error } = useGetUsersQuery();
+  const { data: UsersData, isLoading } = useGetUsersQuery();
   const [activeUser, setActiveUser] = useState<User | undefined>();
   useEffect(() => {
     if (_.isUndefined(activeUser) && UsersData) {
