@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { User } from '../features/usersSlice';
 import { useGetRandomPhotosQuery } from '../features/photosSlice';
 import { useEffect } from 'react';
-import Skeleton from '@mui/material/Skeleton';
 import _ from 'lodash';
 
 interface userInfoProps {
@@ -62,28 +61,7 @@ const UserInfo = (props: userInfoProps) => {
             selectedUser.lastName}
         </span>
       </div>
-      {!isError && !error ? (
-        <div className="flex flex-row  flex-wrap">
-          {!isFetching && photos
-            ? photos.map(photo => {
-                return (
-                  <StyledImage className="mx-4" src={photo.urls.regular} />
-                );
-              })
-            : new Array(10).fill(null).map((_, i) => {
-                return (
-                  <div className="m-4" key={i}>
-                    <Skeleton variant="rounded" width={300} height={300} />
-                  </div>
-                );
-              })}
-        </div>
-      ) : (
-        <span className="text-5xl my-auto self-center text-red-600 leading-16">
-          Images can't be displayed. <br />
-          Error: {error.data}
-        </span>
-      )}
+      
     </StyledUserInfoWrapper>
   );
 };

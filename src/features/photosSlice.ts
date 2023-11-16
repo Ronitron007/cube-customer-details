@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { FetchBaseQueryError, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const clientID = import.meta.env.VITE_UNSPLASH_CLIENT_ID;
 
@@ -38,3 +38,4 @@ export const photosApi = createApi({
 });
 
 export const { useGetRandomPhotosQuery } = photosApi;
+export const isFetchBaseQueryErrorType = (error: any): error is FetchBaseQueryError => 'data' in error
