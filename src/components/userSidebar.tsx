@@ -24,10 +24,16 @@ const StyledUserSection = styled.div`
   border-bottom: 1px solid #000000;
   padding: 2rem;
   transition: all 0.2s ease-in-out;
+  img {
+    background-color: #000000;
+  }
   &.active {
     color: #fff;
     background-color: #212121;
     border-right: 8px solid #232323;
+    img {
+      background-color: #fff;
+    }
   }
 `;
 
@@ -55,8 +61,8 @@ function SideBar(props: SideBarProps) {
               id={`sidebar-${user.id}`}
               onClick={() => sectionClickHandler(user)}
             >
-              <img className="h-2/3 mr-4" src={user.image} />
-              <span className="self-baseline pt-6 text-xl font-bold">
+              <img className="h-2/3 mr-4 rounded-full" src={user.image} />
+              <span className="self-baseline pt-2 text-xl font-bold">
                 {user.firstName}
               </span>
             </StyledUserSection>
